@@ -1,19 +1,66 @@
-import 'package:app_api/app/page/auth/login.dart';
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class AppRoute {
-  static Route onGenerateRoute(RouteSettings route) {
-    switch (route.name) {
-      // case "/":
-      //     return MaterialPageRoute(builder: (_) => const SplashScreen()); //-> tao 1 screen
-      case "Login":
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
-      default:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
-    }
+class CategoryModel {
+  final int? id;
+  final String name;
+  final String desc;
+  final String? img;
+
+  CategoryModel({this.id, required this.name, required this.desc, this.img});
+
+  // Convert a Breed into a Map. The keys must correspond to the names of the
+  // columns in the database.
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'desc': desc,
+    };
   }
 
-  static void pushScreen(BuildContext context, Widget route) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => route));
+  factory CategoryModel.fromMap(Map<String, dynamic> map) {
+    return CategoryModel(
+      id: map['id']?.toInt() ?? 0,
+      name: map['name'] ?? '',
+      desc: map['desc'] ?? '',
+    );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory CategoryModel.fromJson(String source) =>
+      CategoryModel.fromMap(json.decode(source));
+
+  // Implement toString to make it easier to see information about
+  // each breed when using the print statement.
+  @override
+  String toString() => 'Category(id: $id, name: $name, desc: $desc)';
+}
+
+class CategoryModel1 {
+  int? id;
+  String name;
+  String? imageUrl;
+  String description;
+
+  CategoryModel1({
+    this.id,
+    required this.name,
+    this.imageUrl,
+    required this.description,
+  });
+
+  factory CategoryModel1.fromJson(Map<String, dynamic> json) => CategoryModel1(
+        id: json["id"],
+        name: json["name"],
+        imageUrl: json["imageURL"],
+        description: json["description"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "imageURL": imageUrl,
+        "description": description,
+      };
 }

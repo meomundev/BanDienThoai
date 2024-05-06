@@ -1,6 +1,8 @@
-import 'package:app_api/app/data/api.dart';
+import 'package:app_api/app/model/api.dart';
 import 'package:app_api/app/model/register.dart';
 import 'package:app_api/app/page/auth/login.dart';
+import 'package:app_api/app/welcome/welcome.dart';
+import 'package:app_api/other/color.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -44,25 +46,41 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: mainAppWhite,
       appBar: AppBar(
-        title: const Text("Register"),
+        backgroundColor: mainAppWhite,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const WelcomePage()));
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_new,
+              size: 24,
+              color: greyColorForText,
+            )),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  child: const Text(
-                    'Register Info',
-                    style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  'REGISTER',
+                  style: TextStyle(
+                      color: blueDark,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 36),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 48,
                 ),
                 signUpWidget(),
                 const SizedBox(height: 16),
@@ -71,24 +89,54 @@ class _RegisterState extends State<Register> {
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: () async {
-                          String respone = await register();
-                          if (respone == "ok") {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginScreen()));
-                          } else {
-                            print(respone);
-                          }
-                        },
-                        child: const Text('Register'),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
+                          onPressed: () async {
+                            String respone = await register();
+                            if (respone == "ok") {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const LoginScreen()));
+                            } else {
+                              print(respone);
+                            }
+                          },
+                          style: ButtonStyle(
+                              overlayColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.pressed)) {
+                                    return mainAppWhite.withOpacity(0.2);
+                                  }
+                                  return transparentColor;
+                                },
+                              ),
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                                  return blueDark;
+                                },
+                              ),
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              surfaceTintColor: MaterialStateColor.resolveWith(
+                                  (states) => transparentColor)),
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                                color: mainAppWhite,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          )),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 24,
                 )
               ],
             ),

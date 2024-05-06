@@ -1,2 +1,1 @@
-var urlLogo =
-    "https://drive.google.com/file/d/1oqMqmNpPf4Q7iXGsQ50v4atHZ6yCmhfE/view?usp=drive_link";
+const String urlLogo = "assets/images/hlphone_logo.png";

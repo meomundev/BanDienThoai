@@ -9,6 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  typicons_flutter: ^0.5.0
+  qr_code_scanner: ^1.0.1
+  permission_handler: ^11.3.1
+  barcode_scan2: ^4.3.0
+  url_launcher: ^6.2.6
+  provider: ^6.1.2
+  sqflite: ^2.3.3+1
+  dropdown_button2: ^2.3.9
+  image_picker: ^1.0.7
+  intl: ^0.19.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +31,21 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/files/productlist.json
+
+  fonts:
+  - family: Lato
+    fonts:
+      - asset: assets/fonts/Lato-Black.ttf
+      - asset: assets/fonts/Lato-BlackItalic.ttf
+      - asset: assets/fonts/Lato-Bold.ttf
+      - asset: assets/fonts/Lato-BoldItalic.ttf
+      - asset: assets/fonts/Lato-Italic.ttf
+      - asset: assets/fonts/Lato-Light.ttf
+      - asset: assets/fonts/Lato-LightItalic.ttf
+      - asset: assets/fonts/Lato-Regular.ttf
+      - asset: assets/fonts/Lato-Thin.ttf
+      - asset: assets/fonts/Lato-ThinItalic.ttf

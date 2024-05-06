@@ -1,22 +1,22 @@
 class User {
-  String? idNumber;
-  String? accountId;
-  String? fullName;
-  String? phoneNumber;
-  String? imageURL;
-  String? birthDay;
-  String? gender;
-  String? schoolYear;
-  String? schoolKey;
-  String? dateCreated;
-  bool? status;
+  String idNumber;
+  String accountId;
+  String fullName;
+  String phoneNumber;
+  String imageUrl;
+  String birthDay;
+  String gender;
+  String schoolYear;
+  String schoolKey;
+  String dateCreated;
+  bool status;
 
   User({
     required this.idNumber,
     required this.accountId,
     required this.fullName,
     required this.phoneNumber,
-    required this.imageURL,
+    required this.imageUrl,
     required this.birthDay,
     required this.gender,
     required this.schoolYear,
@@ -30,7 +30,7 @@ class User {
         accountId: '',
         fullName: '',
         phoneNumber: '',
-        imageURL: '',
+        imageUrl: '',
         birthDay: '',
         gender: '',
         schoolYear: '',
@@ -44,9 +44,7 @@ class User {
         accountId: json["accountID"],
         fullName: json["fullName"],
         phoneNumber: json["phoneNumber"],
-        imageURL: json["imageURL"] == null || json["imageURL"] == ''
-            ? ""
-            : json['imageURL'],
+        imageUrl: json["imageURL"],
         birthDay: json["birthDay"],
         gender: json["gender"],
         schoolYear: json["schoolYear"],
@@ -55,19 +53,17 @@ class User {
         status: json["status"],
       );
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['idNumber'] = idNumber;
-    data['accountId'] = accountId;
-    data['gender'] = gender;
-    data['fullName'] = fullName;
-    data['gender'] = gender;
-    data['phoneNumber'] = phoneNumber;
-    data['imageURL'] = imageURL;
-    data['birthDay'] = birthDay;
-    data['schoolYear'] = schoolYear;
-    data['schoolKey'] = schoolKey;
-
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "idNumber": idNumber,
+        "accountID": accountId,
+        "fullName": fullName,
+        "phoneNumber": phoneNumber,
+        "imageURL": imageUrl,
+        "birthDay": birthDay,
+        "gender": gender,
+        "schoolYear": schoolYear,
+        "schoolKey": schoolKey,
+        "dateCreated": dateCreated,
+        "status": status,
+      };
 }
